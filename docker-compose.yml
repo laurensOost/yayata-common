@@ -7,13 +7,11 @@ services:
     build:
       context: 925r
       dockerfile: Dockerfile
-#    command: bash -c "python manage.py runserver 0.0.0.0:8000"
-    working_dir: /925r
-    command: bash -c "ls"
+    command: bash -c "cd 925r && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     container_name: 925r
     hostname: 925r
     expose:
-      - "8080"
+      - "8000"
     ports:
       - "8888:8000"
     volumes:
@@ -24,11 +22,14 @@ services:
   yayata:
     container_name: yayata
     hostname: yayata
+    command: bash -c "ls"
     build:
       context: yayata
-      dockerfile: tests\docker\yayata.Dockerfile
-    working_dir: /yayata
+      dockerfile: tests/docker/yayata.Dockerfile
+    working_dir: /code/yayata
     expose:
       - "8080"
     ports:
       - "8080:8080"
+    volumes:
+      - ./yayata/tests/docker/yayata.config.json:/code/src/static/cfg/config.json
