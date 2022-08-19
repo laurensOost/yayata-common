@@ -1,0 +1,34 @@
+version: '3'
+services:
+  ldap:
+    image: osixia/openldap:1.1.7
+
+  925r:
+    build:
+      context: 925r
+      dockerfile: Dockerfile
+#    command: bash -c "python manage.py runserver 0.0.0.0:8000"
+    working_dir: /925r
+    command: bash -c "ls"
+    container_name: 925r
+    hostname: 925r
+    expose:
+      - "8080"
+    ports:
+      - "8888:8000"
+    volumes:
+      - .:/code
+    depends_on:
+      - ldap
+
+  yayata:
+    container_name: yayata
+    hostname: yayata
+    build:
+      context: yayata
+      dockerfile: tests\docker\yayata.Dockerfile
+    working_dir: /yayata
+    expose:
+      - "8080"
+    ports:
+      - "8080:8080"
