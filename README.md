@@ -1,5 +1,5 @@
 # yayata-common
-Repository for bootstraping yayta and 925r on local computer using git and docker.
+Repository for bootstrapping YaYata and 925r on local computer using git and docker (compose).
 
 ## Run
 Run script to clone required repositories.
