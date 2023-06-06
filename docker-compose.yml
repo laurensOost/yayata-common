@@ -3,11 +3,35 @@ services:
   ldap:
     image: osixia/openldap:1.1.7
 
+  mysql:
+    container_name: mysql
+    image: registry-dev.cloud.inuits.io/mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=ninetofiver
+      - MYSQL_DATABASE=ninetofiver
+      - MYSQL_USER=ninetofiver
+      - MYSQL_PASSWORD=ninetofiver
+    ports:
+      - "3307:3306"
+    # expose:
+    #   - "3306"
+    volumes:
+      - mysql:/var/lib/mysql
+      - './docker-compose/initdb.d:/docker-entrypoint-initdb.d'
+    command:
+      [
+        'mysqld',
+        '--character-set-server=utf8mb4',
+        '--collation-server=utf8mb4_unicode_ci',
+        '--wait_timeout=28800',
+        '--max_allowed_packet=128M'
+      ]
+
   925r:
     build:
       context: 925r
       dockerfile: Dockerfile
-    command: bash -c "cd 925r && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     container_name: 925r
     hostname: 925r
     expose:
@@ -15,9 +39,10 @@ services:
     ports:
       - "8888:8000"
     volumes:
-      - .:/code
+      - ./925r:/code
     depends_on:
       - ldap
+      - mysql
 
   yayata:
     container_name: yayata
@@ -26,10 +51,16 @@ services:
     build:
       context: yayata
       dockerfile: tests/docker/yayata.Dockerfile
-    working_dir: /code/yayata
+    # working_dir: /code/yayata
     expose:
       - "8080"
     ports:
       - "8080:8080"
     volumes:
+      - ./yayata/src:/code/src
       - ./config.json:/code/src/static/cfg/config.json
+    depends_on:
+      - 925r
+
+volumes:
+  mysql:
