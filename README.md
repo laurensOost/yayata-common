@@ -13,11 +13,11 @@ docker-compose up
 ```
 Create super-user for 925r.
 ```shell
-docker exec -it 925r python 925r/manage.py createsuperuser
+docker exec -it 925r python manage.py createsuperuser
 ```
 Then open browser on [http://localhost:8888](http://localhost:8888) and create another user etc.
 or you can use 925r command to fill example database data. Choose one of the size options.
 ```shell
-docker exec -t 925r_web_1 python manage.py create_test_data [ small | normal | extensive ]
+docker exec -t 925r python manage.py create_test_data [ small | normal | extensive ]
 ```
 For more details follow YaYata or 925r README.md files.
