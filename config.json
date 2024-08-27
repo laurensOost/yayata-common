@@ -1,8 +1,0 @@
-{
-    "oauth2": {
-        "config": {
-            "baseUrl": "http://localhost:8888",
-            "clientId": "TestCustomer"
-        }
-    }
-}

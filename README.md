@@ -1,23 +1,27 @@
 # yayata-common
-Repository for bootstrapping YaYata and 925r on local computer using git and docker (compose).
+
+Repository for locally bootstrapping YaYata and 925r.
+
+## Dependencies
+
+- [Taskfile](https://taskfile.dev/)
+- [Docker Compose plugin](https://docs.docker.com/compose/)
 
 ## Run
+
 Run script to clone required repositories.
+
 ```shell
-./init-script.sh
+task clone
 ```
-Run docker-compose command to start 925r and YaYata.
-This step will perform also apply of 925r migrations.
+
+Start the setup. This will hand off the actual actions to both repositories.
+
 ```shell
-docker-compose up
+task start
 ```
-Create super-user for 925r.
-```shell
-docker exec -it 925r python manage.py createsuperuser
-```
-Then open browser on [http://localhost:8888](http://localhost:8888) and create another user etc.
-or you can use 925r command to fill example database data. Choose one of the size options.
-```shell
-docker exec -t 925r python manage.py create_test_data [ small | normal | extensive ]
-```
-For more details follow YaYata or 925r README.md files.
+
+Open your browser on [http://localhost:8080](http://localhost:8080) and
+login to YaYata with the credentials found in the YaYata .env file.
+
+For more details, check the YaYata or 925r README.md files.
