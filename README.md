@@ -25,27 +25,13 @@ cd ~/inuits/yayata-application
 Clone this repository from [GitHub](https://github.com/inuits/yayata-common):
 
 ```
-git clone --branch feature/metalarend/local-setup --single-branch https://github.com/inuits/yayata-common.git
+git clone --branch feature/local-setup --single-branch https://github.com/laurensOost/yayata-common.git yayata-common
 ```
 
 Step inside the newly pulled directory.
 
 ```
 cd yayata-common
-```
-
-Clone the 925r and Yayata repositories:
-
-```
-task clone
-```
-
-## Update
-
-Pull the latest changes from the 925r and Yayata repositories:
-
-```
-task pull
 ```
 
 ## Usage
