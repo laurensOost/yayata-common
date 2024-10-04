@@ -25,7 +25,7 @@ cd ~/inuits/yayata-application
 Clone this repository from [GitHub](https://github.com/inuits/yayata-common):
 
 ```
-git clone --branch feature/local-setup --single-branch https://github.com/laurensOost/yayata-common.git yayata-common
+git clone https://github.com/laurensOost/yayata-common.git
 ```
 
 Step inside the newly pulled directory.
