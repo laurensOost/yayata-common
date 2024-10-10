@@ -46,6 +46,8 @@ Open your browser on [http://localhost:8000](http://localhost:8000) for the 925r
 
 Open your browser on [http://localhost:8080](http://localhost:8080) for the Yayata application.
 
+Open your browser on [http://localhost:9000](http://localhost:9000) for the Minio admin panel.
+
 The credentials for Yayata and Minio can be found in the 925r .env file.
 
 For more details, check the 925r and Yayata README.md files.
